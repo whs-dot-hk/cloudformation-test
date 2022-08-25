@@ -129,28 +129,31 @@ Resources:
             Fn::Sub: |
               #!/bin/bash
               sudo yum install -y https://s3.${AWS::Region}.${AWS::URLSuffix}/amazon-ssm-${AWS::Region}/latest/linux_amd64/amazon-ssm-agent.rpm
+      BlockDeviceMappings:
+        - Ebs:
+            VolumeSize: 20
 
   # The Image resource will show complete in CloudFormation once your image is done building. Use this resource later in your
   # stack to reference the image within other resources.
   # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-image.html
-  AmazonLinux2WithLatestSSMAgent:
-    Type: AWS::ImageBuilder::Image
-    Properties:
-      ImageRecipeArn:
-        Ref: AmazonLinux2ImageRecipe
-      InfrastructureConfigurationArn:
-        Ref: AmazonLinux2ImageInfrastructureConfiguration
+  #AmazonLinux2WithLatestSSMAgent:
+  #  Type: AWS::ImageBuilder::Image
+  #  Properties:
+  #    ImageRecipeArn:
+  #      Ref: AmazonLinux2ImageRecipe
+  #    InfrastructureConfigurationArn:
+  #      Ref: AmazonLinux2ImageInfrastructureConfiguration
 
   # Create an SSM Parameter Store entry with our resulting ImageId.
   # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-parameter.html
-  AmazonLinux2WithLatestSSMAgentParameter:
-    Type: AWS::SSM::Parameter
-    Properties:
-      Description: Image Id for Amazon Linux 2 with the latest version of the Amazon SSM Agent installed
-      Name: /test/images/AmazonLinux2-LatestSSMAgent
-      Type: String
-      Value:
-        Fn::GetAtt: [AmazonLinux2WithLatestSSMAgent, ImageId]
+  #AmazonLinux2WithLatestSSMAgentParameter:
+  #  Type: AWS::SSM::Parameter
+  #  Properties:
+  #    Description: Image Id for Amazon Linux 2 with the latest version of the Amazon SSM Agent installed
+  #    Name: /test/images/AmazonLinux2-LatestSSMAgent
+  #    Type: String
+  #    Value:
+  #      Fn::GetAtt: [AmazonLinux2WithLatestSSMAgent, ImageId]
 
   ImagePipelineAllParameters:
     Type: 'AWS::ImageBuilder::ImagePipeline'
