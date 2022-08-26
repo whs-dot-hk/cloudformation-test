@@ -38,17 +38,17 @@ Resources:
                     cd $t/ansible/
                     ansible-playbook -idefault, -clocal playbook.yaml
                     )'
-          - name: validate
-            steps:
-              - name: ValidateResponse
-                action: ExecuteBash
-                inputs:
-                  commands:
-                    - true
-          - name: test
-            steps:
-              - name: ValidateResponse
-                action: ExecuteBash
-                inputs:
-                  commands:
-                    - true
+          # - name: validate
+          #   steps:
+          #     - name: ValidateResponse
+          #       action: ExecuteBash
+          #       inputs:
+          #         commands:
+          #           - true
+          # - name: test
+          #   steps:
+          #     - name: ValidateResponse
+          #       action: ExecuteBash
+          #       inputs:
+          #         commands:
+          #           - true
